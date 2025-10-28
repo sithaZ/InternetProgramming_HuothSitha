@@ -6,9 +6,9 @@ let year = 2025;
 const maxScore = 100;
 // Redeclare
 var school = "ITC";
-let year = 2023;
-const maxScore = 199;
-// the var can be changed like inheritance, but the let does not, constant also cant be changed.
+ year = 2023;
+maxScore = 199;
+// the var and year can be changed like inheritance, constant cant be changed.
 console.log(a); // What prints?
 var a = 10; // the print is 10
 
