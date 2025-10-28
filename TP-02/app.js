@@ -1,6 +1,23 @@
 // We'll fill this step by step. Keep your console open!
 console.log("JS loaded ✅");
+//1Var
+var school = "GIC";
+let year = 2025;
+const maxScore = 100;
+// Redeclare
+var school = "ITC";
+let year = 2023;
+const maxScore = 199;
+// the var can be changed like inheritance, but the let does not, constant also cant be changed.
+console.log(a); // What prints?
+var a = 10; // the print is 10
 
+try {
+  console.log(b); // Error or undefined?
+  let b = 20; // undefined we have to declare first.
+} catch (e) {
+  console.log("b error:", e.message);
+}
 //2. Conditional
 function letterGrade(score) {
   if (score >= 90) {
@@ -126,16 +143,14 @@ function computeAverage(arr) {
   return (total / arr.length).toFixed(1);
 }
 
-//9. Bonus 
+//9. Bonus
 const sortScore = (arr) => {
   arr.sort((a, b) => b.score - a.score);
 };
 
-
 function render() {
-  list.innerHTML = ""; // Clear the list first
+  list.innerHTML = "";
 
- 
   const avg = computeAverage(state.students);
   const avgGrade = letterGrade(avg);
   let passCount = 0;
@@ -150,12 +165,10 @@ function render() {
     state.students.length - passCount
   }`;
 
-  
   const studentsToDisplay = state.showPassingOnly
     ? state.students.filter((s) => s.score >= 60)
     : state.students;
 
- 
   studentsToDisplay.forEach((s) => {
     const li = document.createElement("li");
     li.textContent = `${s.name} — ${s.score}`;
@@ -180,20 +193,19 @@ function render() {
   });
 }
 
-
 addBtn.addEventListener("click", () => {
   const name = nameInput.value.trim();
   const score = parseInt(scoreInput.value);
-  
+
   if (!name || isNaN(score) || score < 0 || score > 100) {
     alert("Please enter a valid name and score (0–100).");
     return;
   }
-  
+
   state.students.push({ name, score });
   sortScore(state.students);
-  
-  render(); 
+
+  render();
   nameInput.value = "";
   scoreInput.value = "";
   nameInput.focus();
@@ -201,8 +213,8 @@ addBtn.addEventListener("click", () => {
 
 clearBtn.addEventListener("click", () => {
   state.students = [];
-  state.showPassingOnly = false; 
-  showOnlyPassBtn.textContent = "Show Only Passed"; 
+  state.showPassingOnly = false;
+  showOnlyPassBtn.textContent = "Show Only Passed";
   render();
 });
 
@@ -215,6 +227,5 @@ showOnlyPassBtn.addEventListener("click", () => {
 
   render();
 });
-
 
 render();
