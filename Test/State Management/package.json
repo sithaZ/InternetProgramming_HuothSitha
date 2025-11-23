@@ -1,5 +1,5 @@
 {
-  "name": "e-commerce",
+  "name": "vue-project",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -14,8 +14,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "axios": "^1.13.2",
-    "pinia": "^3.0.3",
+    "pinia": "^3.0.4",
     "vue": "^3.5.22"
   },
   "devDependencies": {

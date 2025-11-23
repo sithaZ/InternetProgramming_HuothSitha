@@ -1,42 +1,46 @@
-<template>
+<template> 
   <div>
-
- 
-  <div class="category-wrapper">
-    <CategoryComponent title="Burger & Cake" :product-count="14" :image="burgerImage" type="green" />
-
-    <CategoryComponent title="Peach" :product-count="13" :image="peachImage" type="orange" />
-
-    <CategoryComponent title="Organic Kiwi" :product-count="15" :image="kiwiImage" type="green" />
-
-    <CategoryComponent title="Apple" :product-count="15" :image="appleImage" type="red" />
-
-    <CategoryComponent title="Snack" :product-count="12" :image="snackImage" type="orange" />
-
-    <CategoryComponent title="Plum" :product-count="9" :image="plumImage" type="purple" />
-
-    <CategoryComponent title="Veggie" :product-count="11" :image="veggieImage" type="green" />
-
-    <CategoryComponent title="Headphone" :product-count="8" :image="headphoneImage" type="yellow" />
-
-    <CategoryComponent title="Cake" :product-count="10" :image="cakeImage" type="green" />
-
-    <CategoryComponent title="Orange" :product-count="14" :image="orangeImage" type="orange" />
-
-   
-
-
+    <div class="category-wrapper">
+      <!-- <CategoryComponent title="Burger & Cake" :product-count="14" :image="burgerImage" type="green" /> -->
+         <div class="container">
+    <CategoryComponent
+      v-for="category in productStore.categories"
+      :key="category['id']"
+      :title="category['name']"
+      :product-count="category['productCount']"
+      :image="'http://localhost:3000/' + category['image']"
+    />
   </div>
-  <div class="promotion-row">
-    <PromotionComponent title="Fresh Vegetable Everyday Fresh & clean with our products":image="onionImage" type="yellow" />
-     <PromotionComponent title="Make your Breakfast Healthy and Easy" :image="strawberryShakeImage" type="pink" />
-     <PromotionComponent title="The best organic Product online" :image="freshVeggieImage" type="soft-blue" />
 
+      <CategoryComponent title="Peach" :product-count="13" :image="peachImage" type="orange" />
+
+      <CategoryComponent title="Organic Kiwi" :product-count="15" :image="kiwiImage" type="green" />
+
+      <CategoryComponent title="Apple" :product-count="15" :image="appleImage" type="red" />
+
+      <CategoryComponent title="Snack" :product-count="12" :image="snackImage" type="orange" />
+
+      <CategoryComponent title="Plum" :product-count="9" :image="plumImage" type="purple" />
+
+      <CategoryComponent title="Veggie" :product-count="11" :image="veggieImage" type="green" />
+
+      <CategoryComponent title="Headphone" :product-count="8" :image="headphoneImage" type="yellow" />
+
+      <CategoryComponent title="Cake" :product-count="10" :image="cakeImage" type="green" />
+
+      <CategoryComponent title="Orange" :product-count="14" :image="orangeImage" type="orange" />
+    </div>
+    <div class="promotion-row">
+      <PromotionComponent title="Fresh Vegetable Everyday Fresh & clean with our products" :image="onionImage" type="yellow" />
+      <PromotionComponent title="Make your Breakfast Healthy and Easy" :image="strawberryShakeImage" type="pink" />
+      <PromotionComponent title="The best organic Product online" :image="freshVeggieImage" type="soft-blue" />
+    </div>
   </div>
-   </div>
 </template>
 
 <script>
+// 1. Import 'onMounted' from vue
+import { onMounted } from 'vue'
 import CategoryComponent from './components/CategoryComponent.vue'
 
 import burgerImage from '@/assets/burger.png'
@@ -49,7 +53,7 @@ import veggieImage from '@/assets/veggie.png'
 import headphoneImage from '@/assets/headphone.png'
 import cakeImage from '@/assets/cake.png'
 import orangeImage from '@/assets/orange.png'
-
+import { useProductStore } from './stores/product'
 import PromotionComponent from './components/PromotionComponent.vue'
 
 import onionImage from '@/assets/onion.png'
@@ -77,6 +81,20 @@ export default {
       freshVeggieImage,
     }
   },
+
+  // 2. Corrected setup() function
+  setup() {
+    const productStore = useProductStore()
+    return {
+      productStore,
+    }
+  },
+  async mounted() {
+    await this.productStore.fetchCategories()
+    
+  },
+
+
 }
 </script>
 
@@ -97,8 +115,7 @@ export default {
 }
 
 .promotion-row > * {
-  flex: 10;          
-  max-width: 100%;    
+  flex: 10;
+  max-width: 100%;
 }
-
 </style>
