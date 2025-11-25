@@ -44,7 +44,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-  flex-wrap: wrap; /* Good for mobile */
+  flex-wrap: wrap; 
   gap: 15px;
 }
 
@@ -80,7 +80,7 @@ export default {
   color: #3BB77E;
 }
 
-/* Mobile Responsiveness */
+
 @media (max-width: 768px) {
   .section-header {
     flex-direction: column;

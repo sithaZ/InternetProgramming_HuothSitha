@@ -143,7 +143,7 @@ export default {
     padding: 6px 20px;
     font-size: 14px;
     font-weight: 700;
-    cursor: default; /* No pointer cursor since it has no action */
+    cursor: pointer; /* No pointer cursor since it has no action */
     display: flex;
     align-items: center;
     transition: 0.2s;
