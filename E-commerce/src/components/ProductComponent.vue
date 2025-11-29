@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style scoped>
-/* General Card */
+
 .product-card {
   position: relative;
   background-color: #fff;
@@ -94,7 +94,7 @@ export default {
   border-color: #3bb77e;
 }
 
-/* Image */
+
 .product-img-wrap {
   position: relative;
   margin-bottom: 20px;
@@ -110,7 +110,7 @@ export default {
   object-fit: contain;
 }
 
-/* Text */
+
 .product-category { font-size: 12px; color: #adadad; margin-bottom: 5px; }
 .product-title {
   font-size: 16px; font-weight: 700; color: #253d4e; margin: 0 0 10px;
@@ -118,7 +118,7 @@ export default {
   -webkit-box-orient: vertical; overflow: hidden; min-height: 38px; 
 }
 
-/* Rating */
+
 .product-rate-cover { margin-bottom: 15px; }
 .stars { display: inline-block; }
 .star { color: #d2d2d2; font-size: 14px; }
@@ -126,15 +126,15 @@ export default {
 .text-muted { color: #B6B6B6; }
 .font-small { font-size: 12px; }
 
-/* Bottom Area */
+
 .product-weight { font-size: 14px; color: #7E7E7E; margin-bottom: 10px; }
 .product-price-bottom { display: flex; justify-content: space-between; align-items: center; }
 
-/* Price */
+
 .product-price span { font-size: 18px; font-weight: bold; color: #3bb77e; }
 .product-price .old-price { font-size: 14px; color: #adadad; margin-left: 5px; text-decoration: line-through; font-weight: normal; }
 
-/* ADD BUTTON STYLE */
+
 .add-btn {
     background-color: #def9ec;
     color: #3bb77e;
@@ -143,14 +143,14 @@ export default {
     padding: 6px 20px;
     font-size: 14px;
     font-weight: 700;
-    cursor: pointer; /* No pointer cursor since it has no action */
+    cursor: pointer; 
     display: flex;
     align-items: center;
     transition: 0.2s;
 }
 
 
-/* Badges */
+
 .badge { position: absolute; left: 20px; top: 20px; padding: 5px 10px; border-radius: 5px 20px 20px 5px; color: #fff; font-size: 13px; font-weight: 700; z-index: 2; }
 .bg-discount { background-color: #3bb77e; }
 .bg-hot { background-color: #f74b81; }
