@@ -13,6 +13,10 @@
         <button>Subscribe</button>
       </div>
     </div>
+
+    <div class="hero-image-wrapper">
+      <img src="@/components/Hero/mainhero.png" alt="Grocery Basket" class="hero-img" />
+    </div>
   </div>
 </template>
 
@@ -26,20 +30,25 @@ export default {
 .hero-container {
   width: 100%;
   height: 400px;
-
   background-image: url('@/components/Background/herobg.png');
-  background-color: #fdf0d5; 
+  background-color: #fdf0d5;
   background-position: right center;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 20px;
-  border: ;
   display: flex;
-  border-radius: 1;
   align-items: center;
-  padding-left: 60px;
+  justify-content: space-between; /* Spreads text and image apart */
+  padding: 0 60px; /* Padding on both sides */
   margin-bottom: 40px;
   margin-top: 20px;
+  position: relative;
+  overflow: hidden; /* Keeps image inside rounded corners */
+}
+
+.hero-content {
+  max-width: 50%;
+  z-index: 2;
 }
 
 .hero-title {
@@ -64,12 +73,14 @@ export default {
   border-radius: 50px;
   display: inline-flex;
   align-items: center;
-  width: 450px;
+  width: 100%;
+  max-width: 450px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .mail-icon {
   padding-left: 20px;
+  padding-right: 10px;
   font-size: 18px;
   color: #7e7e7e;
 }
@@ -78,7 +89,7 @@ input {
   border: none;
   outline: none;
   flex: 1;
-  padding-left: 15px;
+  padding: 10px 5px;
   font-size: 16px;
   color: #7e7e7e;
 }
@@ -98,5 +109,45 @@ button {
 button:hover {
   background-color: #29a56a;
   transform: translateY(-2px);
+}
+
+/* Image Styling */
+.hero-image-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: flex-end; /* Aligns image to bottom of banner */
+  z-index: 1;
+}
+
+.hero-img {
+  max-height: 90%; /* Adjusts size to fit nicely */
+  width: auto;
+  object-fit: contain;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .hero-container {
+    padding: 0 30px;
+    height: auto;
+    min-height: 350px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .hero-content {
+    max-width: 100%;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .subscribe-box {
+    margin: 0 auto;
+  }
+
+  .hero-image-wrapper {
+    display: none; /* Hide image on smaller screens if crowded, or adjust size */
+  }
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
-  <div class="container" :style="cardStyle">
-    <img :src="image" :alt="title" />
+  <div class="category-card" :style="cardStyle">
+    <div class="img-wrap">
+      <img :src="image" :alt="title" />
+    </div>
+
     <h3 class="title-bold">{{ title }}</h3>
     <span class="count">{{ productCount }} items</span>
   </div>
@@ -30,19 +33,11 @@ export default {
         { type: "soft-blue", bg: "#E7EAF3", border: "#f2fce4"},
       ]
 
-   
       const selected = typeStyles.find(t => t.type === this.type)
 
-      if (!selected) {
-        return {
-          backgroundColor: "#eee",
-          borderColor: "#aaa"
-        }
-      }
-
       return {
-        backgroundColor: selected.bg,
-        borderColor: selected.border
+        backgroundColor: selected?.bg || "#eee",
+        border: `1px solid ${selected?.border || "#ccc"}`
       }
     }
   }
@@ -50,32 +45,50 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid;
-  width: 150px;
-}
-
-
-.title-bold {
-  font-weight: bold;
-  font-size: 16px;
-  margin: 10px 0 4px;
+.category-card {
+  position: relative;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  width: 180px;
   text-align: center;
+  transition: .2s ease;
+  cursor: default;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
 }
 
-img {
+.category-card:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,.08);
+  border-color: #3bb77e;
+}
+
+/* Image section */
+.img-wrap {
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.img-wrap img {
   max-width: 100%;
-  height: 80px;
+  max-height: 100%;
   object-fit: contain;
 }
 
+/* Title */
+.title-bold {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #253d4e;
+}
+
+/* Items count */
 .count {
-  color: #818080;
-  font-size: 12px;
+  color: #7E7E7E;
+  font-size: 13px;
 }
 </style>

@@ -1,50 +1,64 @@
 <template>
-
-
-
   <div class="app-container">
+    
+    <HeroBanner />
 
-   <div class="hero-wrapper">
-  <img src="@/components/Background/herobg.png" class="hero-bg" />
-
-  <div class="hero-content">
-    <img src="@/components/Hero/mainhero.png" class="hero-main" />
-  </div>
-</div>
-
-
-    <!-- Categories Section -->
     <section class="section-categories">
-      <SectionHeaderComponent :title="productStore.sections[0].name" :filters="productStore.filterOptions"
+      <SectionHeaderComponent 
+        :title="productStore.sections[0].name" 
+        :filters="productStore.filterOptions"
         :active-filter="productStore.sections[0].activeFilter"
-        @filter-change="(filter) => handleFilterChange(0, filter)" />
+        @filter-change="(filter) => handleFilterChange(0, filter)" 
+      />
+      
       <div class="category-wrapper">
-        <CategoryComponent v-for="category in productStore.categories" :key="category.id" :title="category.name"
-          :product-count="parseInt(category.productCount)" :image="'http://localhost:3000/' + category.image"
-          :type="category.color" @click="selectCategory(category.id)"
-          :class="{ 'selected-box': selectedCategoryId === category.id }" />
+        <CategoryComponent 
+          v-for="category in productStore.categories" 
+          :key="category.id" 
+          :title="category.name"
+          :product-count="parseInt(category.productCount)" 
+          :image="'http://localhost:3000/' + category.image"
+          :type="category.color" 
+          @click="selectCategory(category.id)"
+          :class="{ 'selected-box': selectedCategoryId === category.id }" 
+        />
       </div>
     </section>
 
-    <!-- Promotions Row -->
     <div class="promotion-row">
-      <PromotionComponent v-for="promo in productStore.promotions" :key="promo.id" :title="promo.title"
-        :image="'http://localhost:3000/' + promo.image" :type="promo.color" />
+      <PromotionComponent 
+        v-for="promo in productStore.promotions" 
+        :key="promo.id" 
+        :title="promo.title"
+        :image="'http://localhost:3000/' + promo.image" 
+        :type="promo.color" 
+      />
     </div>
 
     <br><br>
 
-    <!-- Popular Products Section -->
     <section class="section-popular">
-
-      <SectionHeaderComponent :title="productStore.sections[1].name" :filters="productStore.filterOptions"
-        :active-filter="productStore.sections[1].activeFilter" />
+      <SectionHeaderComponent 
+        :title="productStore.sections[1].name" 
+        :filters="productStore.filterOptions"
+        :active-filter="productStore.sections[1].activeFilter" 
+      />
 
       <div class="products-grid">
-        <ProductComponent v-for="product in productStore.products" :key="product.id" :id="product.id"
-          :name="product.name" :category="product.category" :price="product.price"
-          :original-price="product.originalPrice" :rating="product.rating" :weight="product.weight"
-          :image="'http://localhost:3000/' + product.image" :badge="product.badge" :badge-type="product.badgeType" />
+        <ProductComponent 
+          v-for="product in productStore.products" 
+          :key="product.id" 
+          :id="product.id"
+          :name="product.name" 
+          :category="product.category" 
+          :price="product.price"
+          :original-price="product.originalPrice" 
+          :rating="product.rating" 
+          :weight="product.weight"
+          :image="'http://localhost:3000/' + product.image" 
+          :badge="product.badge" 
+          :badge-type="product.badgeType" 
+        />
       </div>
     </section>
 
@@ -53,8 +67,10 @@
 
 <script>
 import { onMounted, ref } from 'vue'
-// Updated imports with "../" to point to src folder
 import { useProductStore } from '../stores/product'
+
+// Components
+import HeroBanner from '../components/HeroBanner.vue'
 import CategoryComponent from '../components/CategoryComponent.vue'
 import PromotionComponent from '../components/PromotionComponent.vue'
 import ProductComponent from '../components/ProductComponent.vue'
@@ -62,7 +78,13 @@ import SectionHeaderComponent from '../components/SectionHeaderComponent.vue'
 
 export default {
   name: 'HomeView',
-  components: { CategoryComponent, PromotionComponent, ProductComponent, SectionHeaderComponent },
+  components: { 
+    HeroBanner, 
+    CategoryComponent, 
+    PromotionComponent, 
+    ProductComponent, 
+    SectionHeaderComponent 
+  },
   setup() {
     const productStore = useProductStore()
     const selectedCategoryId = ref(null)
@@ -133,62 +155,20 @@ export default {
   margin-top: 40px;
 }
 
-.promotion-row>* {
+.promotion-row > * {
   flex: 1;
   max-width: 100%;
 }
 
+/* Products Grid */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  /* Forces exactly 5 columns */
   gap: 20px;
   padding-bottom: 50px;
 }
 
-.hero-container {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 20px;
-  margin-bottom: 40px;
-  border: 1px solid green;
-  background-color: #FFDFB0;
-}
-.hero-wrapper {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-/* Background image */
-.hero-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-/* Content image (Main hero) */
-.hero-content {
-  position: absolute;
-  top: 50%;        /* center vertically */
-  left: 50%;       /* center horizontally */
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-.hero-main {
-  width: 300px; 
-  height: auto;
-}
-
-
+/* Responsive Breakpoints */
 @media (max-width: 1400px) {
   .products-grid {
     grid-template-columns: repeat(4, 1fr);
