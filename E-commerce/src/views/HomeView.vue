@@ -1,5 +1,4 @@
 <template>
-
   <div class="app-container">
     
     <HeroBanner />
@@ -13,15 +12,14 @@
       />
       
       <div class="category-wrapper">
-   <CategoryComponent 
+        <CategoryComponent 
           v-for="category in productStore.categories" 
           :key="category.id" 
           :title="category.name"
           :product-count="parseInt(category.productCount)" 
           :image="'http://localhost:3000/' + category.image"
           :type="category.color" 
-          @click="goToCategory(category.id)"
-          class="cursor-pointer"
+          @click="selectCategory(category.id)"
           :class="{ 'selected-box': selectedCategoryId === category.id }" 
         />
       </div>
@@ -60,8 +58,6 @@
           :image="'http://localhost:3000/' + product.image" 
           :badge="product.badge" 
           :badge-type="product.badgeType" 
-          @click="goToProduct(product.id)"
-          class="cursor-pointer"
         />
       </div>
     </section>
@@ -99,13 +95,6 @@ export default {
       productStore.setSectionFilter(sectionIndex, filter)
     }
 
-     const goToCategory = (id) => {
-      router.push({ name: 'category', params: { categoryId: id } })
-    }
-
-    const goToProduct = (id) => {
-      router.push({ name: 'product', params: { productId: id } })
-    }
     onMounted(async () => {
       await productStore.fetchCategories()
       await productStore.fetchPromotions()

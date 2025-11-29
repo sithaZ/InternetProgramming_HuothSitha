@@ -38,12 +38,12 @@ export default {
   border-radius: 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between; 
-  padding: 0 60px; 
+  justify-content: space-between; /* Spreads text and image apart */
+  padding: 0 60px; /* Padding on both sides */
   margin-bottom: 40px;
   margin-top: 20px;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden; /* Keeps image inside rounded corners */
 }
 
 .hero-content {
@@ -66,7 +66,7 @@ export default {
   font-weight: 500;
 }
 
-
+/* Subscribe Form Styling */
 .subscribe-box {
   background: white;
   padding: 10px;
@@ -111,21 +111,21 @@ button:hover {
   transform: translateY(-2px);
 }
 
-
+/* Image Styling */
 .hero-image-wrapper {
   height: 100%;
   display: flex;
-  align-items: flex-end; 
+  align-items: flex-end; /* Aligns image to bottom of banner */
   z-index: 1;
 }
 
 .hero-img {
-  max-height: 90%; 
+  max-height: 90%; /* Adjusts size to fit nicely */
   width: auto;
   object-fit: contain;
 }
 
-
+/* Responsive adjustments */
 @media (max-width: 992px) {
   .hero-container {
     padding: 0 30px;
@@ -147,7 +147,7 @@ button:hover {
   }
 
   .hero-image-wrapper {
-    display: none; 
+    display: none; /* Hide image on smaller screens if crowded, or adjust size */
   }
 }
 </style>

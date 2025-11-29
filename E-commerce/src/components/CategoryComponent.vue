@@ -63,7 +63,7 @@ export default {
   border-color: #3bb77e;
 }
 
-
+/* Image section */
 .img-wrap {
   height: 90px;
   display: flex;
@@ -78,7 +78,7 @@ export default {
   object-fit: contain;
 }
 
-
+/* Title */
 .title-bold {
   font-weight: 700;
   font-size: 15px;
@@ -86,7 +86,7 @@ export default {
   color: #253d4e;
 }
 
-
+/* Items count */
 .count {
   color: #7E7E7E;
   font-size: 13px;
