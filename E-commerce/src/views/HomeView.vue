@@ -67,6 +67,7 @@
 
 <script>
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router' 
 import { useProductStore } from '../stores/product'
 
 // Components
@@ -88,8 +89,15 @@ export default {
   setup() {
     const productStore = useProductStore()
     const selectedCategoryId = ref(null)
+    const router = useRouter() 
 
-    const selectCategory = (id) => { selectedCategoryId.value = id }
+    const selectCategory = (id) => { 
+      selectedCategoryId.value = id;
+      router.push({ 
+        name: 'category', 
+        params: { categoryId: id } 
+      });
+    }
 
     const handleFilterChange = (sectionIndex, filter) => {
       productStore.setSectionFilter(sectionIndex, filter)
@@ -123,7 +131,7 @@ export default {
   margin-top: 40px;
 }
 
-/* Category Slider */
+
 .category-wrapper {
   display: flex;
   gap: 15px;
@@ -148,7 +156,7 @@ export default {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Promotions */
+
 .promotion-row {
   display: flex;
   gap: 20px;
@@ -160,7 +168,7 @@ export default {
   max-width: 100%;
 }
 
-/* Products Grid */
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -168,7 +176,7 @@ export default {
   padding-bottom: 50px;
 }
 
-/* Responsive Breakpoints */
+
 @media (max-width: 1400px) {
   .products-grid {
     grid-template-columns: repeat(4, 1fr);

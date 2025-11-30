@@ -17,7 +17,7 @@ export default {
 </template>
 
 <style>
-/* Global styles */
+
 * {
   margin: 0;
   padding: 0;

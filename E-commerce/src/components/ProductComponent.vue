@@ -1,5 +1,5 @@
 <template>
-  <div class="product-card">
+  <div class="product-card" @click="goToProduct">
     <div v-if="badge" class="badge" :class="badgeClass">
       {{ badge }}
     </div>
@@ -38,7 +38,7 @@
           </div>
           
           <div class="add-cart">
-             <a class="add-btn">Add +</a>
+             <a class="add-btn" @click.stop>Add +</a>
           </div>
         </div>
       </div>
@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router' 
+
 export default {
   name: 'ProductComponent',
   props: {
@@ -60,6 +62,19 @@ export default {
     rating: { type: Number, default: 0 },
     badge: { type: String, default: null },
     badgeType: { type: String, default: 'discount' }
+  },
+  setup(props) {
+    const router = useRouter()
+
+    // Function to navigate to the product detail page
+    const goToProduct = () => {
+      router.push({ 
+        name: 'product', 
+        params: { productId: props.id } 
+      })
+    }
+
+    return { goToProduct }
   },
   computed: {
     badgeClass() {
@@ -88,12 +103,13 @@ export default {
   width: 298px;
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
+  cursor: pointer; 
 }
+
 .product-card:hover {
   box-shadow: 0 20px 40px rgba(0,0,0,.08);
   border-color: #3bb77e;
 }
-
 
 .product-img-wrap {
   position: relative;
@@ -104,12 +120,12 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
 .product-img-wrap img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
-
 
 .product-category { font-size: 12px; color: #adadad; margin-bottom: 5px; }
 .product-title {
@@ -118,7 +134,6 @@ export default {
   -webkit-box-orient: vertical; overflow: hidden; min-height: 38px; 
 }
 
-
 .product-rate-cover { margin-bottom: 15px; }
 .stars { display: inline-block; }
 .star { color: #d2d2d2; font-size: 14px; }
@@ -126,14 +141,11 @@ export default {
 .text-muted { color: #B6B6B6; }
 .font-small { font-size: 12px; }
 
-
 .product-weight { font-size: 14px; color: #7E7E7E; margin-bottom: 10px; }
 .product-price-bottom { display: flex; justify-content: space-between; align-items: center; }
 
-
 .product-price span { font-size: 18px; font-weight: bold; color: #3bb77e; }
 .product-price .old-price { font-size: 14px; color: #adadad; margin-left: 5px; text-decoration: line-through; font-weight: normal; }
-
 
 .add-btn {
     background-color: #def9ec;
@@ -149,7 +161,10 @@ export default {
     transition: 0.2s;
 }
 
-
+.add-btn:hover {
+  background-color: #3bb77e;
+  color: #fff;
+}
 
 .badge { position: absolute; left: 20px; top: 20px; padding: 5px 10px; border-radius: 5px 20px 20px 5px; color: #fff; font-size: 13px; font-weight: 700; z-index: 2; }
 .bg-discount { background-color: #3bb77e; }

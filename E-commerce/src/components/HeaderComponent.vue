@@ -50,16 +50,39 @@
         </div>
 
         <nav class="main-nav">
-          <MenuItem label="Hot Deals" icon>
-             <template #icon>🔥</template>
-          </MenuItem>
-          <MenuItem label="Home" hasDropdown />
-          <MenuItem label="Food" hasDropdown />
-          <MenuItem label="Vegetables" hasDropdown />
-          <MenuItem label="Drink" />
-          <MenuItem label="Cookies" />
-          <MenuItem label="Meat & Seafood" hasDropdown />
-          <MenuItem label="Bakery" />
+          <router-link to="/categories/hot-deals" class="nav-link">
+             <MenuItem label="Hot Deals" icon>
+               <template #icon>🔥</template>
+             </MenuItem>
+          </router-link>
+
+          <router-link to="/" class="nav-link">
+            <MenuItem label="Home" hasDropdown />
+          </router-link>
+          
+          <router-link to="/categories/food" class="nav-link">
+            <MenuItem label="Food" hasDropdown />
+          </router-link>
+          
+          <router-link to="/categories/vegetables" class="nav-link">
+            <MenuItem label="Vegetables" hasDropdown />
+          </router-link>
+          
+          <router-link to="/categories/drink" class="nav-link">
+            <MenuItem label="Drink" />
+          </router-link>
+          
+          <router-link to="/categories/cookies" class="nav-link">
+            <MenuItem label="Cookies" />
+          </router-link>
+          
+          <router-link to="/categories/meat" class="nav-link">
+            <MenuItem label="Meat & Seafood" hasDropdown />
+          </router-link>
+          
+          <router-link to="/categories/bakery" class="nav-link">
+            <MenuItem label="Bakery" />
+          </router-link>
         </nav>
 
         <div class="support">
@@ -102,7 +125,6 @@ export default {
   padding: 0 20px;
 }
 
-/* TOP HEADER */
 .header-top {
   padding: 20px 0;
   border-bottom: 1px solid #ececec;
@@ -115,7 +137,7 @@ export default {
   gap: 30px;
 }
 
-/* Logo */
+
 .logo {
   display: flex;
   align-items: center;
@@ -179,6 +201,13 @@ export default {
 .main-nav {
   display: flex;
   gap: 30px;
+}
+
+
+.nav-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .support {
