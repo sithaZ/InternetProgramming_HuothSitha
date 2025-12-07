@@ -1,7 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-
-const activeSection = ref('Section 2')
+import { RouterLink, RouterView } from 'vue-router'
+import SidebarMenu from './components/SidebarMenu.vue'
 </script>
 
 <template>
@@ -10,20 +9,14 @@ const activeSection = ref('Section 2')
     <header class="header">
       <div class="brand">Header</div>
       <div class="nav-links">
-        <RouterLink class="nav-item" to="/">Page 1</RouterLink>
-        <RouterLink class="nav-item" to="/page2">Page 2</RouterLink>
-        <RouterLink class="nav-item" to="/page3">Page 3</RouterLink>
+        <RouterLink class="nav-item" to="/page_1/sections/1">Page 1</RouterLink>
+        <RouterLink class="nav-item" to="/page2/sections/1">Page 2</RouterLink>
+        <RouterLink class="nav-item" to="/page3/sections/1">Page 3</RouterLink>
       </div>
     </header>
 
     <aside class="sidebar">
-      <div class="menu-header">Menu</div>
-      <ul class="menu-list">
-        <li class="menu-item">Section 1</li>
-        <li class="menu-item ">Section 2</li>
-        <li class="menu-item">Section 3</li>
-        <li class="menu-item">Section 4</li>
-      </ul>
+      <SidebarMenu />
     </aside>
 
     <main class="main-content">
@@ -32,10 +25,6 @@ const activeSection = ref('Section 2')
       </div>
     </main>
 
-    <footer class="footer">
-      Footer
-    </footer>
-
+    <footer class="footer">Footer</footer>
   </div>
 </template>
-

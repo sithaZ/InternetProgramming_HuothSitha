@@ -1,29 +1,43 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import PageOne from '../../components/PageOne.vue'
 
-// navi to each page
-const Page1 = { template: '<div><h2>Welcome to Page 1</h2><p>This is Page 1 content.</p></div>' }
-const Page2 = { template: '<div><h2>Welcome to Page 2</h2><p>This is Page 2 content.</p></div>' }
-const Page3 = { template: '<div><h2>Welcome to Page 3</h2><p>This is Page 3 content.</p></div>' }   
-
-// router 
-const routes = createRouter({
-      history: createWebHistory(import.meta.env.BASE_URL),
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/page_1/sections/:sectionId',
+      name: 'page-one-section',
+      component: PageOne,
+      props: (route) => ({ sectionId: route.params.sectionId, pageTitle: 'Page 1' }),
+    },
+    {
       path: '/',
-      name: 'home',
-      component: Page1
+      redirect: '/page_1/sections/1',
+    },
+
+    {
+      path: '/page2/sections/:sectionId',
+      name: 'page-two-section',
+      component: PageOne,
+
+      props: (route) => ({ sectionId: route.params.sectionId, pageTitle: 'Page 2' }),
     },
     {
       path: '/page2',
-      name: 'page2',
-      component: Page2
+      redirect: '/page2/sections/1',
+    },
+
+    {
+      path: '/page3/sections/:sectionId',
+      name: 'page-three-section',
+      component: PageOne,
+      props: (route) => ({ sectionId: route.params.sectionId, pageTitle: 'Page 3' }),
     },
     {
       path: '/page3',
-      name: 'page3',
-      component: Page3
-    }
-  ]
-})  
-export default routes
+      redirect: '/page3/sections/1',
+    },
+  ],
+})
+
+export default router

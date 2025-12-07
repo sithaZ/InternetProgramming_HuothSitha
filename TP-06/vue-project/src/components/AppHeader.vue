@@ -16,6 +16,6 @@
   align-items: center;
   padding: 20px;
 }
-.active { color: rgb(8, 115, 255); font-weight: bold; } /* Matches your 'Page 1' red text */
+.active { color: rgb(8, 115, 255); font-weight: bold; } 
 .top-nav a { margin-left: 20px; text-decoration: none; color: black; }
 </style>
